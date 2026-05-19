@@ -1,3 +1,9 @@
+---
+name: weread-researcher
+description: >
+  Use this skill when the user wants to analyze WeRead / 微信读书 data, summarize reading activity, analyze a single book or topic, run multi-lens self-reflection, find reading gaps, recommend the next book, create a reading plan, or export a polished HTML / Markdown / Obsidian reading report. This skill relies on an installed WeRead data skill or compatible data source for bookshelf, highlights, notes, reviews, progress, and reading timeline data.
+---
+
 # weread-researcher
 
 ## Purpose
