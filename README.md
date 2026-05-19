@@ -39,6 +39,83 @@
 + HTML 报告
 ```
 
+## 安装与配置
+
+`weread-researcher` 是上层分析 Skill，本身负责阅读闭环、洞察视角、推荐逻辑和报告模板；微信读书数据建议通过官方 WeRead Skill 或兼容的数据访问层提供。
+
+### 1. 安装本 Skill
+
+将仓库放到你使用的 Agent / IDE 的 skills 目录中，并保持目录内有 `SKILL.md`。
+
+```bash
+git clone https://github.com/CPythoner/weread-researcher.git
+mkdir -p .codebuddy/skills
+cp -r weread-researcher .codebuddy/skills/
+```
+
+如果你的工具使用其他 skills 目录，也可以放到对应目录，例如：
+
+```text
+<your-project>/.codebuddy/skills/weread-researcher/SKILL.md
+```
+
+重启或刷新 Agent 后，应该可以识别 `weread-researcher`。
+
+### 2. 安装底层 WeRead Skill
+
+本项目默认不直接保存微信读书账号信息，而是调用底层 WeRead Skill / 数据源。你需要另外安装可以读取微信读书数据的 WeRead Skill，并确保它能提供：书架、已读、在读、想读、划线、笔记、书评、阅读进度和时间线。
+
+推荐目录结构：
+
+```text
+.codebuddy/skills/
+├── weread/                 # 底层微信读书数据 Skill
+└── weread-researcher/      # 本项目：分析、洞察、推荐、导出
+```
+
+### 3. 配置环境变量
+
+复制示例配置：
+
+```bash
+cp .env.example .env
+```
+
+填写你的微信读书数据访问配置：
+
+```bash
+WEREAD_API_KEY=wrk-your-api-key
+WEREAD_DATA_SOURCE=official-skill
+WEREAD_DEFAULT_RANGE=30d
+WEREAD_DEFAULT_LENS=default
+WEREAD_EXPORT_DIR=exports
+```
+
+获取 API Key 的入口可能会随微信读书版本变化，一般可以在微信读书 App 的账号、安全或 Agent 相关设置中生成。请以 App 内实际入口为准。
+
+### 4. 验证配置
+
+在 Agent 对话中执行：
+
+```text
+/weread-loop 最近一周 --lens default --html
+```
+
+如果配置正常，应该能得到：
+
+```text
+阅读概览
+核心观点
+多视角洞察
+自我画像
+阅读缺口
+下一本书推荐
+7 天阅读计划
+HTML 报告
+```
+
+更完整的安装说明见 [`docs/installation.md`](./docs/installation.md)。
+
 ## 完整功能目录
 
 ```text
@@ -144,6 +221,7 @@ weread-mirror
 ## 推荐文件
 
 - [`SKILL.md`](./SKILL.md)：Skill 主说明与执行规范
+- [`docs/installation.md`](./docs/installation.md)：安装、配置、验证与安全说明
 - [`commands/weread-loop.md`](./commands/weread-loop.md)：总控工作流实现说明
 - [`commands/reading-summary.md`](./commands/reading-summary.md)：阅读汇总命令
 - [`commands/book-analysis.md`](./commands/book-analysis.md)：单书分析命令
@@ -162,3 +240,4 @@ weread-mirror
 3. 不做心理诊断，只做基于阅读材料的自我反思辅助。
 4. 所有洞察必须基于划线、笔记、书评、阅读时间线等证据。
 5. 输出要能沉淀为 Markdown、Obsidian 笔记、HTML 报告和自媒体内容。
+6. 不在仓库中保存真实 API Key、Cookie、Token 或个人阅读数据。
