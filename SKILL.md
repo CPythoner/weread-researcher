@@ -8,7 +8,7 @@
 读过什么 → 总结什么 → 多视角洞察 → 看见自己 → 发现缺口 → 推荐下一本 → 继续阅读 → 导出 HTML
 ```
 
-The skill should rely on the official WeRead skill or any available WeRead data access layer for source data, then add higher-level analysis, workflow orchestration, insight lenses, recommendation logic, and export templates.
+The skill should rely on the official WeRead skill or any available WeRead data access layer for source data, then add higher-level analysis, workflow orchestration, insight lenses, recommendation logic, content generation, knowledge export, and HTML report templates.
 
 ## Data Inputs
 
@@ -32,6 +32,89 @@ Always distinguish between:
 - What the user highlighted
 - What the user personally wrote
 - What the assistant infers
+
+## Complete Capability Map
+
+```text
+weread-mirror
+├── 总控工作流
+│   └── weread-loop
+├── 阅读汇总
+│   ├── reading-daily
+│   ├── reading-weekly
+│   ├── reading-monthly
+│   └── reading-yearly
+├── 单书分析
+│   ├── book-summary
+│   ├── book-deepdive
+│   ├── book-to-action
+│   └── book-questions
+├── 主题研究
+│   ├── topic-map
+│   ├── topic-compare
+│   ├── reading-gap
+│   └── learning-path
+├── 深层自我洞察
+│   ├── mind-journey
+│   ├── core-pursuit
+│   ├── ten-year-answer
+│   ├── contradiction-check
+│   ├── core-anxiety
+│   ├── blind-spots
+│   └── avoid-and-desire
+├── 多视角洞察
+│   ├── growth-evidence
+│   ├── action-guide
+│   ├── deep-questions
+│   ├── theme-extension
+│   ├── inner-assets
+│   ├── contrarian-insights
+│   ├── global-scan
+│   ├── meaning-radar
+│   ├── influence-map
+│   ├── bottom-question
+│   ├── acceptance-action
+│   ├── blindspot-explore
+│   ├── third-person-view
+│   ├── life-script
+│   ├── thought-trap-check
+│   ├── personality-hints
+│   ├── personal-flywheel
+│   ├── core-conflict
+│   ├── value-clarification
+│   ├── inversion-thinking
+│   ├── second-order-thinking
+│   ├── munger-view
+│   ├── aristotle-view
+│   ├── seneca-view
+│   └── eurich-view
+├── 内容生产
+│   ├── book-to-xhs
+│   ├── book-to-wechat-article
+│   ├── book-to-video-script
+│   ├── book-to-cards
+│   └── reading-series
+├── 知识库联动
+│   ├── export-book-to-obsidian
+│   ├── book-to-atomic-notes
+│   ├── build-topic-moc
+│   └── book-to-project
+├── 阅读推荐
+│   ├── next-book
+│   ├── recommend-by-goal
+│   ├── recommend-by-gap
+│   ├── recommend-for-question
+│   ├── recommend-opposite
+│   ├── recommend-topic
+│   ├── recommend-for-content
+│   ├── reading-roadmap
+│   └── shelf-cleanup
+└── 导出能力
+    ├── export-reading-html
+    ├── export-markdown
+    ├── export-obsidian
+    └── export-xhs
+```
 
 ## Primary Command
 
@@ -63,6 +146,13 @@ Collect source data and produce a normalized reading dataset.
 
 ### 1. 读过什么 / Reading Summary
 
+This stage can call:
+
+- reading-daily
+- reading-weekly
+- reading-monthly
+- reading-yearly
+
 Answer:
 
 - 最近读了哪些书
@@ -72,6 +162,15 @@ Answer:
 - 当前阅读状态是深读、泛读、囤书还是主题探索
 
 ### 2. 总结什么 / Reading Digest
+
+This stage can call:
+
+- book-summary
+- book-deepdive
+- book-to-action
+- book-questions
+- topic-map
+- topic-compare
 
 Extract:
 
@@ -98,21 +197,47 @@ Default bundle:
 
 Deep bundle:
 
-- deep-self-review / 深度自我洞察
 - mind-journey / 心路变化
 - core-pursuit / 核心追求
 - ten-year-answer / 十年答案
+- contradiction-check / 前后矛盾
 - core-anxiety / 核心焦虑
+- blind-spots / 思维盲区
 - avoid-and-desire / 逃避与渴望
+
+Review bundle:
+
+- growth-evidence / 成长证据
+- action-guide / 行动指南
+- deep-questions / 深问自己
+- theme-extension / 主题延伸
+- inner-assets / 内在资源
+- contrarian-insights / 反常识洞见
+- global-scan / 全局扫描
+
+Self-awareness bundle:
+
+- meaning-radar / 动力雷达
+- influence-map / 影响力地图
+- bottom-question / 心底之问
+- acceptance-action / 接纳与行动
+- blindspot-explore / 盲区探索
+- third-person-view / 他者视角
+- life-script / 人生剧本
+- thought-trap-check / 思维陷阱
+- personality-hints / 人格线索
 
 Decision bundle:
 
+- personal-flywheel / 个人飞轮
 - core-conflict / 当前张力
 - value-clarification / 价值澄清
 - inversion-thinking / 反向推演
 - second-order-thinking / 二阶思考
 - munger-view / 芒格视角
+- aristotle-view / 亚里士多德视角
 - seneca-view / 塞涅卡视角
+- eurich-view / 塔莎·尤里奇视角
 
 Content bundle:
 
@@ -122,6 +247,7 @@ Content bundle:
 - book-to-xhs / 小红书内容
 - book-to-video-script / 短视频口播
 - book-to-cards / 卡片内容
+- reading-series / 系列内容
 
 ### 4. 看见自己 / Self Mirror
 
@@ -137,6 +263,11 @@ Compress lens outputs into a user portrait:
 
 ### 5. 发现缺口 / Gap Analysis
 
+Can call:
+
+- reading-gap
+- recommend-by-gap
+
 Find:
 
 - 主题缺口
@@ -147,6 +278,18 @@ Find:
 - 决策缺口
 
 ### 6. 推荐下一本 / Reading Recommendation
+
+Can call:
+
+- next-book
+- recommend-by-goal
+- recommend-by-gap
+- recommend-for-question
+- recommend-opposite
+- recommend-topic
+- recommend-for-content
+- reading-roadmap
+- shelf-cleanup
 
 Recommend a set, not just one book:
 
@@ -174,7 +317,18 @@ Create a 7-day reading plan:
 - 输出任务
 - 下次复盘时间
 
-### 8. 导出 HTML / Export
+### 8. 导出 / Export
+
+Can call:
+
+- export-reading-html
+- export-markdown
+- export-obsidian
+- export-xhs
+- export-book-to-obsidian
+- book-to-atomic-notes
+- build-topic-moc
+- book-to-project
 
 Generate a polished HTML report using `templates/reading-loop-report.html` as the base style.
 
