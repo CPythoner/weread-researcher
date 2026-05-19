@@ -1,0 +1,28 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Generated reports and private reading data
+exports/
+reports/
+*.html
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Local data for debugging
+local-data/
+*.local.json
+
+# Python cache
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
