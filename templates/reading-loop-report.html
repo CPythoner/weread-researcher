@@ -1,0 +1,180 @@
+<div class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <section class="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 px-6 py-16 text-white">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-blue-400 blur-3xl"></div>
+      <div class="absolute right-0 top-20 h-72 w-72 rounded-full bg-indigo-400 blur-3xl"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-6xl">
+      <div class="mb-6 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm backdrop-blur">
+        微信读书认知镜像 · Reading Loop
+      </div>
+      <h1 class="max-w-4xl text-4xl font-black leading-tight tracking-tight md:text-6xl">
+        从阅读记录里，重新看见自己
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+        本报告基于你的阅读记录、划线、笔记和主题变化，完成一次完整的阅读闭环：读过什么、总结什么、多视角洞察、看见自己、发现缺口、推荐下一本、继续阅读。
+      </p>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur">
+          <p class="text-sm text-blue-100">分析范围</p>
+          <p class="mt-2 text-2xl font-bold">{{range}}</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur">
+          <p class="text-sm text-blue-100">核心主题</p>
+          <p class="mt-2 text-2xl font-bold">{{core_topics}}</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur">
+          <p class="text-sm text-blue-100">下一步建议</p>
+          <p class="mt-2 text-2xl font-bold">{{next_suggestion}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="mx-auto max-w-6xl px-6 py-12">
+    <section class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">01</p>
+      <h2 class="mt-2 text-3xl font-black">读过什么</h2>
+      <p class="mt-3 text-slate-600 dark:text-slate-300">先看阅读事实：哪些书被读过，哪些内容真正被投入时间和注意力。</p>
+
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">已读书籍</p>
+          <p class="mt-3 text-4xl font-black">{{finished_count}}</p>
+          <p class="mt-2 text-sm text-slate-500">本期完成阅读</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">新增笔记</p>
+          <p class="mt-3 text-4xl font-black">{{note_count}}</p>
+          <p class="mt-2 text-sm text-slate-500">划线与想法</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">高频主题</p>
+          <p class="mt-3 text-2xl font-black">{{top_topic}}</p>
+          <p class="mt-2 text-sm text-slate-500">反复出现的关键词</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">02</p>
+      <h2 class="mt-2 text-3xl font-black">总结什么</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-2">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="text-xl font-bold">核心观点</h3>
+          <ul class="mt-4 space-y-3 text-slate-700 dark:text-slate-300">
+            {{core_ideas}}
+          </ul>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="text-xl font-bold">行动线索</h3>
+          <ul class="mt-4 space-y-3 text-slate-700 dark:text-slate-300">
+            {{action_clues}}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">03</p>
+      <h2 class="mt-2 text-3xl font-black">多视角洞察</h2>
+      <p class="mt-3 text-slate-600 dark:text-slate-300">同一批阅读记录，从不同镜头下会呈现出不同的你。</p>
+
+      <div class="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-blue-600 dark:text-blue-400">全局扫描</p>
+          <h3 class="mt-3 text-xl font-black">{{global_scan_title}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{global_scan_desc}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-emerald-600 dark:text-emerald-400">动力雷达</p>
+          <h3 class="mt-3 text-xl font-black">{{meaning_radar_title}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{meaning_radar_desc}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-orange-600 dark:text-orange-400">当前张力</p>
+          <h3 class="mt-3 text-xl font-black">{{core_conflict_title}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{core_conflict_desc}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-purple-600 dark:text-purple-400">盲区探索</p>
+          <h3 class="mt-3 text-xl font-black">{{blindspot_title}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{blindspot_desc}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">04</p>
+      <h2 class="mt-2 text-3xl font-black">看见自己</h2>
+      <div class="mt-6 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 p-8 text-white shadow-sm">
+        <p class="text-sm text-blue-100">一句话洞察</p>
+        <p class="mt-4 text-2xl font-black leading-relaxed">{{self_mirror_summary}}</p>
+      </div>
+
+      <div class="mt-5 grid gap-5 md:grid-cols-3">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="font-bold">核心追求</h3>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">{{core_pursuit}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="font-bold">当前张力</h3>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">{{current_tension}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="font-bold">隐藏焦虑</h3>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">{{hidden_anxiety}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">05</p>
+      <h2 class="mt-2 text-3xl font-black">发现缺口</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-2">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="text-xl font-bold">认知缺口</h3>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">{{knowledge_gap}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <h3 class="text-xl font-bold">行动缺口</h3>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">{{action_gap}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">06</p>
+      <h2 class="mt-2 text-3xl font-black">推荐下一本</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-blue-600 dark:text-blue-400">最该读</p>
+          <h3 class="mt-3 text-xl font-black">{{next_book_best}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{next_book_best_reason}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-blue-600 dark:text-blue-400">补缺口</p>
+          <h3 class="mt-3 text-xl font-black">{{next_book_gap}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{next_book_gap_reason}}</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <p class="text-sm text-blue-600 dark:text-blue-400">反向挑战</p>
+          <h3 class="mt-3 text-xl font-black">{{next_book_challenge}}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{next_book_challenge_reason}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">07</p>
+      <h2 class="mt-2 text-3xl font-black">继续阅读</h2>
+      <div class="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+        <div class="grid gap-5 md:grid-cols-7">
+          {{seven_day_plan}}
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
